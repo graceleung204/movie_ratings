@@ -42,22 +42,17 @@ docker-run: docker-build
 	docker run --name $(app) --network $(network) -td $(app)
 	docker ps
 
-docker-run-kong:
-	docker run -d --name kong \
-    --network=kong-network \
-    -e "KONG_DATABASE=off" \
-    -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-    -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-    -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-    -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-    -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
-    -p 80:8000 \
-    -p 443:8443 \
-    -p 8001:8001 \
-    -p 8444:8444 \
-    kong:2.4.0
+docker-run-mongo:
+	docker run -d --name cs157c-mongo \
+    -e MONGO_INITDB_ROOT_USERNAME=admin \
+    -e MONGO_INITDB_ROOT_PASSWORD=cmpe172 \
+    -p 27017:27017 \
+    mongo:4.4
 	docker ps
 
+    # --network=cs157c-network \
+
+	
 docker-run-all: docker-run docker-run-kong
 
 docker-clean:
@@ -65,10 +60,10 @@ docker-clean:
 	-docker rm $(app)
 	-docker rmi $(app)
 
-docker-clean-kong:
-	-docker stop kong
-	-docker rm kong
-	-docker rmi kong
+docker-clean-mongo:
+	-docker stop cs157c-mongo
+	-docker rm cs157c-mongo
+	-docker rmi cs157c-mongo
 
 docker-clean-all: docker-clean docker-clean-kong
 

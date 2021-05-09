@@ -1,11 +1,6 @@
 package edu.sjsu.movie;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,11 +20,12 @@ import lombok.RequiredArgsConstructor;
 @Data
 // @NoArgsConstructor  // required by Hibernate for Entity creation?
 @RequiredArgsConstructor
-@Entity
-@Table()
+// @Entity
+// @Table()
 public class Title {
-	
-    private @Id long id;  //tconst
+
+    private @Id String id;
+    private String tconst;
 	private String titleType;
 	private String primaryTitle;
 	private String originalTitle;
