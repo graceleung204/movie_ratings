@@ -28,15 +28,35 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication
-public class MovieApplication implements CommandLineRunner{
+public class MovieApplication implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MovieApplication.class, args);
-	}
+    private static final String connectionString = "mongodb://admin:cmpe172@localhost:27017";
+    private static final String databaseName = "movie";
+
+    public static void main(String[] args) {
+        SpringApplication.run(MovieApplication.class, args);
+    }
 
     @Override
     public void run(String... args) {
         log.info("Application started!");
- 
+        log.info("Connecting to database...");
+        MongoClient mongoClient = MongoClients.create(connectionString);
+        log.info("MongoClient created: " + mongoClient.toString());
+
+        log.info("Accessing database...");
+        MongoDatabase database = mongoClient.getDatabase(databaseName);
+        log.info("MongoDatabase created: " + database.toString());
+
+        log.info("Getting ratings collection...");
+        MongoCollection<Document> ratingsCollection = database.getCollection("ratings");
+        log.info("MongoCollection ratingsCollection created: " + ratingsCollection.toString());
+
+        Document myDoc = ratingsCollection.find().first();
+        System.out.println("First item in ratings collection:");
+        System.out.println(myDoc.toJson());
+
+        // System.out.println("1. Movies with the highest ratings");
+
     }
 }
