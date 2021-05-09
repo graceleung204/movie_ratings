@@ -28,5 +28,11 @@ hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/java
 
+# Other execution stuff
+*Snap.*.trc
+*core.*.dmp
+*heapdump.*.phd
+*javacore.*.txt
+
 # vscode folders, since I open a vscode instance for each lab
 *.vscode/

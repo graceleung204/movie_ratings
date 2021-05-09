@@ -20,17 +20,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 // @Entity
 // @Table()
-public class Title {
+public class Ratings {
 
     // private @Id String id;
     private String tconst;
-	private String titleType;
-	private String primaryTitle;
-	private String originalTitle;
-	private boolean isAdult;
-	private String startYear;
-	private String endYear;
-	private int runtimeMinutes;
-	private String[] genres;
-	
+	private double averageRating;
+	private int	numVotes;
 }

@@ -16,21 +16,14 @@ import lombok.RequiredArgsConstructor;
 */
 
 @Data
-// @NoArgsConstructor  // required by Hibernate for Entity creation?
+// @NoArgsConstructor // required by Hibernate for Entity creation?
 @RequiredArgsConstructor
 // @Entity
 // @Table()
-public class Title {
+public class Crew {
 
-    // private @Id String id;
-    private String tconst;
-	private String titleType;
-	private String primaryTitle;
-	private String originalTitle;
-	private boolean isAdult;
-	private String startYear;
-	private String endYear;
-	private int runtimeMinutes;
-	private String[] genres;
-	
+	// private @Id String id;
+	private String tconst;
+	private String directors;
+	private String writers;
 }

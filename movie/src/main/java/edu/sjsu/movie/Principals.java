@@ -20,17 +20,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 // @Entity
 // @Table()
-public class Title {
+public class Principals {
 
     // private @Id String id;
     private String tconst;
-	private String titleType;
-	private String primaryTitle;
-	private String originalTitle;
-	private boolean isAdult;
-	private String startYear;
-	private String endYear;
-	private int runtimeMinutes;
-	private String[] genres;
-	
+	private int ordering;
+	private String nconst;
+	private String category;
+	private String job;
+	private String characters;
 }
