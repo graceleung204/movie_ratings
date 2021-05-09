@@ -70,7 +70,7 @@ public class MovieApplication implements CommandLineRunner {
         log.info("Collections loaded.");
 
         // aggregation test
-        genreAverageYear("Short");
+        genrePerYear("Short");
 
     }
     
@@ -84,13 +84,12 @@ public class MovieApplication implements CommandLineRunner {
         System.out.println(myDoc.toJson());
     }
 
-    public void genreAverageYear(String genre) {
+    public void genrePerYear(String genre) {
         title.aggregate(
             Arrays.asList(
-                Aggregates.match(Filters.eq("genres", "Short")),
-                Aggregates.group("$genres", Accumulators.average("startYear")  // .sum("count", 1))
-                )
-            ).forEach(doc -> System.out.println(doc.toJson())
-        );
+                    Aggregates.match(Filters.eq("genres", genre)),
+                    Aggregates.group("$startYear", Accumulators.sum("count", 1))
+            )
+        ).forEach(doc -> System.out.println(doc.toJson()));
     }
 }
